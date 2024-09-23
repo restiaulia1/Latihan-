@@ -13,50 +13,44 @@
 <body>
 
   <body class="m-3">
-    <h1>Daftar Bunga</h1>
+  <h1>Daftar Bunga</h1>
 
-    <table class="table" id="daftar-Bunga">
-      <thead>
-        <tr>
-          <th scope="col">#</th>
-          <th scope="col">Nama</th>
-          
-          <th scope="col">Aksi</th>
-        </tr>
-      </thead>
-      <tbody>
-        
-        <a href="formulirTambah.html">Tambah Bunga</a>
-      
+  <table class="table" id="nama-bunga">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Nama Bunga</th> 
+        <th scope="col">Aksi</th>
+      </tr>
+    </thead>
+    <tbody>
     
-    
-    <script type="module">
-      import { ambilDaftarBunga } from './main.js';
+     <a href="formulirtambah.html">Tambah bunga</a>
       
-      $(document).ready(async function() {
-        let elemendaftarBunga = $("#daftar-Bunga > tbody");
-        let DaftarBunga = await ambilDaftarBunga();
-          
+      <script type="module">
+        import { ambilDaftarBunga } from './main.js';
         
-        
-        DaftarBunga.forEach((data) => {
-          elemendaftarBunga.append(
-            "<tr>" +
-            "<td>" + "</td>" +
-            "<td>" + data.Nama + "</td>" +
+        $(document).ready(async function() {
+          let elemenNamaBunga = $("#nama-bunga > tbody");
+          let daftarBunga = await ambilDaftarBunga();
           
-            "<td>" + "</td>" +
-            "</tr>"
-            )
-            
+          daftarBunga.forEach((data) => {
+            elemenNamaBunga.append(
+              "<tr>" +
+               "<td>" + "</td>" +
+               "<td>" + data.nama + "</td>" +
+              
+               "<td>" + "</td>" +
+              "</tr>"
+              )
+          })
+          
         })
-      })
+        
+      </script>
       
-      
-    </script>
-      </tbody>
-    
-    </table>
-  </body>
+    </tbody>
+  </table>
+</body>
 
 </html>

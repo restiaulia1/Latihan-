@@ -22,40 +22,40 @@ const firebaseConfig = {
   measurementId: "G-TJFSY9D8R1"
 };
 
-// inisialisasi firebase
-const aplikasi = initializeApp(firebaseConfig)
-const basisdata = getFirestore(aplikasi)
+// Initialize Firebase
+const app = initializeApp(firebaseConfig);
+const basisdata = getFirestore(app);
+
 
 export async function ambilDaftarBunga() {
-  const refDoKumen = collection(basisdata, "namabunga");
-  const kueri = query(refDoKumen, orderBy("Nama"));
-  const cuplikankueri = await getDocs(kueri);
+  const refDokumen = collection(basisdata, "namabunga");
+  const kueri = query(refDokumen, orderBy("nama"));
+  const cuplikanKueri = await getDocs(kueri);
   
-  let hasilkueri = [];
-  cuplikankueri.forEach((dokumen) => {
-    hasilkueri.push({
+  
+  let hasilKueri = [];
+  cuplikanKueri.forEach((dokumen) => {
+    hasilKueri.push({
       id: dokumen.id,
-      Nama: dokumen.data().Nama,
-     
+      nama: dokumen.data().nama
     })
   })
   
-  return hasilkueri;
+  return hasilKueri;
 }
 
-export async function TambahBunga(Nama) {
+export async function tambahBunga(nama) {
   try {
     // menyimpan data ke firebase
-    const refDoKumen = await addDoc(collection(basisdata, "Bunga"),{
-      Nama: Nama,
-     
+    const refDokumen =await addDoc(collection(basisdata,"namabunga"), {
+      nama: nama
+   
     })
     
-    //menampilkan pesan berhasil 
-    console.log("berhasil menyimpan data Bunga")
+    //menampilkan pesan hasil 
+    console.log("berhasil menyimpan data bunga")
   } catch (error) {
-     // menampilkan pesan gagal
-     console.log("gagal menyimpan data Bunga")
-  
-  } 
+    //menampilkan pesan gagal
+    console.log("gagal menyimpan data bunga" + error)
+  }
 }
